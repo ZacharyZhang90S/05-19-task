@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8">
+    <title>My导航</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <header></header>
+    <main>
+        <div id='mainX' class="wrapper"></div>
+    </main>
+    <footer></footer>
+    <script>
+        var keys = {
+            0: ["q","w","e","r","t","y","u","i","o","p"],
+            1: ["a","s","d","f","g","h","j","k","l"],
+            2: ["z","x","c","v","b","n","m"],
+            length:3
+        }
+        var hash = {
+            'q':"qq.com",
+            'w':"weibo.com",
+            'e':"ele.me",
+            'r':"renren.com",
+            't':"tianya.com",
+            'y':"youtube.com",
+            'u':"uc.com",
+            'i':"iqiyi.com",
+            'o':"opera.com",
+            'p':undefined,
+            'a':"acfun.tv",
+            's':"sohu.com",
+            'z':"zhihu.com",
+            'm':"www.mcdonalds.com.cn"
+        }
+        var hashInLocalStorage = JSON.parse(localStorage.getItem('zzz') || 'null')
+        if(hashInLocalStorage){
+            hash = hashInLocalStorage 
+        }
+        index = 0
+        while(index < keys['length']){
+            divContainer = document.createElement('div')
+            mainX.appendChild(divContainer)
+            row = keys[index]
+            index2 = 0
+            while(index2 < row['length']){
+                kbdContainer = document.createElement('kbd')
+                kbdContainer.textContent = row[index2]
+                buttonContainer = document.createElement('button')
+                buttonContainer.textContent = '编辑'
+                buttonContainer.id = row[index2]
+                buttonContainer.onclick = function(canshu){
+                    key = canshu.target.id
+                    x = prompt('给我一个网址')
+                    hash[key] = x
+                    localStorage.setItem('zzz',JSON.stringify(hash))
+                    console.log(hash)
+                }
+                kbdContainer.appendChild(buttonContainer)
+                divContainer.appendChild(kbdContainer)
+                index2 = index2 +1
+            }
+            index = index + 1
+        }
+
+        document.onkeypress = function(canshu){
+            console.log(canshu)
+            key = canshu.key
+            website = hash[key]
+            // location.href = 'http://'+ website
+            window.open('http://'+ website, '_blank')
+        }
+
+        
+    </script>
+</body>
+</html>
