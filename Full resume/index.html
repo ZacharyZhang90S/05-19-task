@@ -4,8 +4,10 @@
 
 <head>
     <title>我的简历</title>
-    <link rel="stylesheet" href="./a.css">
+    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./loading.css">
     <script src="//at.alicdn.com/t/font_773703_652f0b0zdmt.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/tween.js/17.2.0/Tween.min.js'></script>
     <style type="text/css">
         .icon {
            width: 1em; height: 1em;
@@ -18,25 +20,39 @@
     
 
 <body>
-    <div class="topNavBar">
+    <div id="siteWelcome" class="siteWelcome active">
+        <div class="loading">
+        </div>
+    </div>
+    <div id='topNavBar' class="topNavBar">
         <div class="topNavBar-inner clearfix">  
             <a class="logo" href="#" alt="logo" style="float: left;">
                 <span class="rs">RS</span>
                 <span class="card">card</span>
             </a>
-            <nav style="float: right;">
+            <nav class='menu' style="float: right;">
                 <ul class="clearfix">
                     <li>
-                        <a href="#">关于</a>
+                        <a href="#siteAbout">关于</a>
                     </li>
                     <li>
-                        <a href="#">技能</a>
+                        <a href="#siteSkills">技能</a>
                     </li>
                     <li>
-                        <a href="#">作品</a>
+                        <a href="#siteWorks">作品</a>
+                        <ul class="submenu">
+                            <li>作 品 1</li>
+                            <li>作 品 2</li>
+                            <li>作 品 3</li>
+                        </ul>  
                     </li>
-                    <li>
+                    <li >
                         <a href="#">博客</a>
+                        <ul class="submenu">
+                            <li>博 客 1</li>
+                            <li>博 客 2</li>
+                            <li>博 客 3</li>
+                        </ul>  
                     </li>
                     <li>
                         <a href="#">日历</a>
@@ -57,7 +73,7 @@
     </div>
 
     <main>
-        <div class="avatarAndText">
+        <div id='siteAbout' class="avatarAndText">
             <div class="avatarAndText-inner clearfix">
                 <div class="avater" style="float:left">
                     <img src="./img/avatar.jpg" width="299px" height="330px" alt="avater">
@@ -105,7 +121,7 @@
         <p class="selfIntroduction">莫藤苔，前端开发工程师</p>
     </main>
 
-    <section class="skills">
+    <section id="siteSkills" class="skills">
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -159,7 +175,7 @@
         </ol>
     </section>
 
-    <section class="portfolio">
+    <section class="portfolio" id="siteWorks">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -195,5 +211,73 @@
             <img width="300px" height="300px" src="./img/veer-132383085.jpg" alt="作品3">
         </div>
         <div class="one">123</div>
+    <script>
+        setTimeout(function(){siteWelcome.classList.remove("active")},1000)
+        window.onscroll = function(xxx){
+            if(window.scrollY > 0 ){
+                topNavBar.classList.add('sticky')
+            }
+            else {
+                topNavBar.classList.remove('sticky') 
+            }
+        }
+        let liTags = document.querySelectorAll('nav.menu > ul > li')
+        for(let i = 0;i < liTags.length; i++){
+            liTags[i].onmouseenter = function(x){
+                    x.currentTarget.classList.add('active')
+            }    
+            liTags[i].onmouseleave = function(x){
+                    x.currentTarget.classList.remove('active')
+            }
+        }
+        let aTags = document.querySelectorAll('nav.menu > ul > li > a')
+
+        function animate(time) {
+        requestAnimationFrame(animate);
+        TWEEN.update(time);
+        }
+        requestAnimationFrame(animate);
+
+       
+        for(let i=0; i<aTags.length;i++) {
+            aTags[i].onclick = function(x){
+                x.preventDefault()
+                // let a = x.currentTarget
+                // let href = a.getAttribute('href')
+                // let element = document.querySelector(href)
+                // let top = element.offsetTop
+                let top = document.querySelector(x.currentTarget.getAttribute('href')).offsetTop
+                // let n =25
+                // let duration = 500 / n
+                let currentTop = window.scrollY
+                let targetTop = top - 80
+                let s = targetTop - currentTop
+                // let distance = (targetTop - currentTop)/ n
+                // let i =0
+                // let id = setInterval(()=> {
+                //     if(i===n){
+                //         window.clearInterval(id)
+                //         return
+                //     }
+                //     i=i+1
+                //     window.scrollTo(0,currentTop + distance * i)
+                //     },duration
+                // )
+                var coords = { y: currentTop}; 
+                var t = Math.abs((s/100) * 300)
+                if(t>500){ t = 500 }
+                var tween = new TWEEN.Tween(coords) 
+                .to({ y: targetTop}, t) 
+                .easing(TWEEN.Easing.Quadratic.InOut) 
+                .onUpdate(function() { 
+                    window.scrollTo(0,coords.y)
+                })
+                .start(); 
+                        
+            }
+        }
+    </script>
 </body>
 </html>
+
+
