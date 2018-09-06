@@ -73,7 +73,7 @@
     </div>
 
     <main>
-        <div id='siteAbout' class="avatarAndText">
+        <div data-x id='siteAbout' class="avatarAndText">
             <div class="avatarAndText-inner clearfix">
                 <div class="avater" style="float:left">
                     <img src="./img/avatar.jpg" width="299px" height="330px" alt="avater">
@@ -121,7 +121,7 @@
         <p class="selfIntroduction">莫藤苔，前端开发工程师</p>
     </main>
 
-    <section id="siteSkills" class="skills">
+    <section data-x id="siteSkills" class="skills">
         <h2>技能</h2>
         <ol class="clearfix">
             <li>
@@ -129,15 +129,15 @@
                     HTML 5 &amp; CSS 3
                 </h3>
                 <div class="progressBar">
-                    <div class="progress1"></div>
+                    <div class="progress1 progress"></div>
                 </div>
             </li>
             <li>
                 <h3>
                     JavaScript
                 </h3>
-                <div class="progressBar">
-                    <div class="progress2"></div>
+                <div class="progressBar ">
+                    <div class="progress2 progress"></div>
                 </div>
             </li>
             <li>
@@ -145,7 +145,7 @@
                     jQuery
                 </h3>
                 <div class="progressBar">
-                    <div class="progress3"></div>
+                    <div class="progress3 progress"></div>
                 </div>
             </li>
             <li>
@@ -153,7 +153,7 @@
                     Vue
                 </h3>
                 <div class="progressBar">
-                    <div class="progress4"></div>
+                    <div class="progress4 progress"></div>
                 </div>
             </li>
             <li>
@@ -161,7 +161,7 @@
                     React
                 </h3>
                 <div class="progressBar">
-                    <div class="progress5"></div>
+                    <div class="progress5 progress"></div>
                 </div>
             </li>
             <li>
@@ -169,13 +169,13 @@
                     HTTP
                 </h3>
                 <div class="progressBar">
-                    <div class="progress6"></div>
+                    <div class="progress6 progress"></div>
                 </div>
             </li>
         </ol>
     </section>
 
-    <section class="portfolio" id="siteWorks">
+    <section data-x class="portfolio" id="siteWorks">
         <h2>作品集</h2>
         <nav>
             <ol class="clearfix">
@@ -212,7 +212,13 @@
         </div>
         <div class="one">123</div>
     <script>
-        setTimeout(function(){siteWelcome.classList.remove("active")},1000)
+        setTimeout(function(){siteWelcome.classList.remove("active")},100)
+        let specialTags = document.querySelectorAll('[data-x]')   
+        for(let i =0;i<specialTags.length; i++){
+        specialTags[i].classList.add('offset')           
+        }
+
+        setTimeout(function(){findClosest()},150)
         window.onscroll = function(xxx){
             if(window.scrollY > 0 ){
                 topNavBar.classList.add('sticky')
@@ -220,6 +226,26 @@
             else {
                 topNavBar.classList.remove('sticky') 
             }
+        findClosest()
+        }
+        function findClosest() {
+            let specialTags = document.querySelectorAll('[data-x]')   
+            let minIndex = 0
+            for(let i =1;i<specialTags.length; i++){
+            if(Math.abs(specialTags[i].offsetTop - window.scrollY) < Math.abs(specialTags[minIndex].offsetTop - window.scrollY)){
+                minIndex = i
+            }
+        }
+
+            //minIndex 就是离窗口最近的元素
+            specialTags[minIndex].classList.remove('offset')
+            let id = specialTags[minIndex].id
+            let a = document.querySelector('a[href="#'+ id + '"]')
+            let li = a.parentNode
+            let brothersAndMe = li.parentNode.children
+            for(let i=0; i<brothersAndMe.length;i++){
+            brothersAndMe[i].classList.remove('highLight')}
+            li.classList.add('highLight')
         }
         let liTags = document.querySelectorAll('nav.menu > ul > li')
         for(let i = 0;i < liTags.length; i++){
