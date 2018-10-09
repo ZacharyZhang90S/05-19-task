@@ -51,7 +51,6 @@ header{
      display: flex;
      margin-left: auto;
      margin-right: auto;
-     box-shadow: 2px 2px 2px 0px rgba(215,215,215,1);
      transition: all 500ms;
  }
  .panel{
@@ -67,6 +66,7 @@ header{
     overflow: hidden;
     height: 445x;
     width: 920px;
+    box-shadow: 2px 2px 2px 0px rgba(215,215,215,1);
     margin-left: auto;
     margin-right: auto;
  }
