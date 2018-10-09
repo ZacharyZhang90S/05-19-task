@@ -57,6 +57,7 @@ header{
  .panel{
     position: absolute;
     top: 400px;
+    left: 300px;
     box-shadow: 2px 2px 2px 0px rgba(215,215,215,1);
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
