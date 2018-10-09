@@ -1,0 +1,112 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box；
+}
+ul,ol{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+/* ------------------------------------------------------------------------------------------------------------------------------------------------------ */
+body{
+    background-color: #f2f2f2;
+    border-top: 1px solid #b6b4b6;
+}
+header{
+    font-family: "Myriad Pro",Arial,Helvetica,sans-serif;
+}
+.titleP1,.titleP2{
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid red; */
+}
+.titleP1 > p{
+   font-size: 40px;
+   color: #444444;
+   margin-top: 120px;
+}
+.titleP2 > p{
+    font-size: 40px;
+    color: #444444;
+    
+ }
+ .tutorialLink{
+    display: flex;
+    justify-content: center;
+
+ }
+ .tutorialLink > p{
+    font-size: 16px;
+    color: #444444;
+    margin: 18px 0 24px 0;
+ }
+ /*------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+ main{
+    position: relative;
+    /* border: 1px solid green; */
+ }
+ .imgSlide{
+     display: flex;
+     margin-left: auto;
+     margin-right: auto;
+     box-shadow: 2px 2px 2px 0px rgba(215,215,215,1);
+     transition: all 500ms;
+ }
+ .panel{
+    position: absolute;
+    top: 400px;
+    box-shadow: 2px 2px 2px 0px rgba(215,215,215,1);
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    /* border: 1px solid red; */
+ }
+ main > .window{
+    overflow: hidden;
+    height: 445x;
+    width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+ }
+ main ul{
+    top: 400px;
+    left: 43%;
+    bottom:5px;
+    position: absolute;
+    display: flex;
+ }
+ main ul > li{
+     height: 45px;
+     width: 60px;
+ }
+ main ul > li:hover{
+    background: url(./img/pic_bg.png) repeat
+ }
+ main ul > li.active{
+	background:url(./img/active_bg.png) no-repeat;
+}
+ main ul > li > img{
+    display: block;
+    padding-top: 8px;
+    margin-left: auto;
+    margin-right: auto;
+ }
+ /* ---------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+ footer{
+     /* border: 1px solid red; */
+     font-family: "Myriad Pro",Arial,Helvetica,sans-serif;
+     margin-top: 60px;
+     color: #444444;
+ }
+ footer > .footerP1{
+     text-align: center;
+     font-size: 13px;
+     padding-top: 5px;
+     padding-bottom: 15px;
+ }
+ footer > .footerP2{
+    text-align: center;
+    font-size: 10px;
+    margin-bottom: 10px;
+}
