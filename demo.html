@@ -1,0 +1,41 @@
+<html>
+    <body>
+        <div id="app">
+            <span v-html="msg1"></span>
+            <span v-text="num" :class="className"></span>
+            <button v-on:click = "count">{{sum}}</button>
+            <br>
+            <span v-html="msg2"></span>
+            <span>{{num | translate}}</span>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    msg1: "<span style= color:red;>十以内的奇数:</span>",
+                    msg2: "<span style= color:red;>加上括号</span>",
+                    num: "1,3,5,7,9",
+                    sum: "他们的和等于",
+                    className: "blue"
+                },
+                filters: {
+                    translate: function(value){
+                        return "(" + value + ")"
+                    }
+                },
+                methods: {
+                    count(){
+                        console.log(this.num)
+                        alert("25")
+                    }
+                },
+            });
+        </script>
+        <style>
+         .blue { 
+             color: blue;
+         }
+        </style>
+    </body>
+</html>
