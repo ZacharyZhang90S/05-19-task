@@ -1,0 +1,22 @@
+<html>
+    <body>
+        <div id="app">
+            <span>{{msgReversal}}</span>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    msg: "hello world"
+                },
+                computed: {
+                    msgReversal: function(){
+                        var msgReversal = this.msg.split(' ').reverse().join(' ')
+                        return msgReversal
+                    }
+                },
+            });
+        </script>
+    </body>
+</html>
